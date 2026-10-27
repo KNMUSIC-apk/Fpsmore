@@ -56,7 +56,25 @@ jobs:
           gradle-version: '9.8.2'
 
       - name: Build mod jar
-        run: gradle build --no-daemon --stacktrace
+        run: |
+          gradle build --no-daemon --stacktrace > build.log 2>&1
+          status=$?
+          tail -n 300 build.log
+          if [ "$status" -ne 0 ]; then
+            {
+              echo "## Build thất bại (exit code $status)"
+              echo ""
+              echo "### Các dòng lỗi"
+              echo '```'
+              grep -n -E 'error|Error|What went wrong|FAILURE|Could not|Exception' build.log | head -150 || true
+              echo '```'
+              echo "### 300 dòng cuối của log"
+              echo '```'
+              tail -n 300 build.log
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit "$status"
 
       - name: Upload mod jar
         uses: actions/upload-artifact@v7
