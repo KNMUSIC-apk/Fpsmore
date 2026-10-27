@@ -1,26 +1,13 @@
-{
-  "schemaVersion": 1,
-  "id": "ethylene",
-  "version": "${version}",
-  "name": "Ethylene",
-  "description": "Client-side FPS optimization mod: chunk LOD, mob blur, and motion reduction.",
-  "authors": [
-    "KNMUSIC"
-  ],
-  "license": "All-Rights-Reserved",
-  "environment": "client",
-  "entrypoints": {
-    "client": [
-      "com.knmusic.ethylene.EthyleneClient"
-    ]
-  },
-  "mixins": [
-    "ethylene.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.15.11",
-    "minecraft": ">=1.20.6",
-    "java": ">=21",
-    "fabric-api": "*"
-  }
-}
+org.gradle.jvmargs=-Xmx2G
+org.gradle.parallel=true
+
+# Stable, build-ready Fabric target for this project.
+minecraft_version=1.20.6
+yarn_mappings=1.20.6+build.1
+loader_version=0.15.11
+fabric_version=0.99.0+1.20.6
+loom_version=1.6.12
+
+mod_version=0.1.2
+maven_group=com.knmusic.ethylene
+archives_base_name=ethylene
