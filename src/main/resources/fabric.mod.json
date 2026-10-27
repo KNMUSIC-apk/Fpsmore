@@ -3,7 +3,7 @@
   "id": "ethylene",
   "version": "${version}",
   "name": "Ethylene",
-  "description": "Tối ưu FPS: giảm chi tiết chunk ở xa, làm mờ và giảm chuyển động mob khi quá đông.",
+  "description": "Client-side FPS optimization mod: chunk LOD, mob blur, and motion reduction.",
   "authors": [
     "KNMUSIC"
   ],
@@ -14,10 +14,13 @@
       "com.knmusic.ethylene.EthyleneClient"
     ]
   },
+  "mixins": [
+    "ethylene.mixins.json"
+  ],
   "depends": {
-    "fabricloader": ">=0.19.5",
-    "minecraft": "26.3",
-    "java": ">=25",
+    "fabricloader": ">=0.15.11",
+    "minecraft": ">=1.20.6",
+    "java": ">=21",
     "fabric-api": "*"
   }
 }
