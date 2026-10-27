@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "ethylene",
+  "version": "${version}",
+  "name": "Ethylene",
+  "description": "Tối ưu FPS: giảm chi tiết chunk ở xa, làm mờ và giảm chuyển động mob khi quá đông.",
+  "authors": [
+    "KNMUSIC"
+  ],
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.knmusic.ethylene.EthyleneClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
