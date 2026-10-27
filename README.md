@@ -32,17 +32,22 @@ Hiện tại mod chỉ nạp cấu hình và ghi log, chưa thay đổi gì tron
 
 ## Build
 
-Yêu cầu JDK 25.
+Yêu cầu JDK 25 và Gradle 9.8.2.
+
+**Cách 1: GitHub Actions (không cần cài gì trên máy)**
+Vào tab **Actions** của repo, chọn workflow **Build & Generate Sources**, bấm **Run workflow**. Khi xong, tải artifact `ethylene-jar` (chứa file jar) hoặc `minecraft-generated-sources` (source Minecraft đã decompile).
+
+**Cách 2: Trên máy của bạn**
 
 ```bash
-# Tạo Gradle wrapper (theo hướng dẫn của Fabric)
-gradle wrapper --gradle-version latest
+# Tạo gradlew (chỉ cần làm một lần)
+gradle wrapper --gradle-version 9.8.2
 ./gradlew build
 ```
 
-File jar nằm trong `build/libs/`.
+File jar nằm trong `build/libs/ethylene-0.1.0.jar`.
 
-**Lưu ý:** `loom_version` trong `gradle.properties` (hiện là `1.16-SNAPSHOT`) chưa được xác minh. Nếu Gradle báo không tìm thấy plugin, hãy thay bằng phiên bản mới nhất ở https://docs.fabricmc.net/develop/.
+**Lưu ý:** `loom_version` (`1.19.3`) đã được đối chiếu tag trên GitHub, nhưng chưa được kiểm chứng là build được Minecraft 26.3 cho đến khi chạy build thật.
 
 ## Kiểm tra logic (không cần Minecraft)
 
