@@ -7,8 +7,10 @@ import com.knmusic.ethylene.mob.MobDensityPolicy;
  * Kiểm tra logic thuần, chạy không cần Minecraft:
  *   javac -d out src/main/java/com/knmusic/ethylene/lod/LodPolicy.java \
  *         src/main/java/com/knmusic/ethylene/mob/MobDensityPolicy.java \
- *         src/test/java/com/knmusic/ethylene/EthyleneLogicTest.java
- *   java -cp out com.knmusic.ethylene.EthyleneLogicTest
+ *         tests/EthyleneLogicTest.java
+ *   java -ea -cp out com.knmusic.ethylene.EthyleneLogicTest
+ *
+ * Không đặt trong src/test để Gradle không chạy test này (không có JUnit).
  */
 public final class EthyleneLogicTest {
 

@@ -54,7 +54,7 @@ File jar nằm trong `build/libs/ethylene-0.1.0.jar`.
 ```bash
 javac -d out src/main/java/com/knmusic/ethylene/lod/LodPolicy.java \
       src/main/java/com/knmusic/ethylene/mob/MobDensityPolicy.java \
-      src/test/java/com/knmusic/ethylene/EthyleneLogicTest.java
+      tests/EthyleneLogicTest.java
 java -ea -cp out com.knmusic.ethylene.EthyleneLogicTest
 ```
 
@@ -82,6 +82,6 @@ src/main/java/com/knmusic/ethylene/
 ├── config/EthyleneConfig.java   # Cấu hình JSON
 ├── lod/LodPolicy.java           # Logic chunk LOD (thuần Java)
 └── mob/MobDensityPolicy.java    # Logic mật độ mob (thuần Java)
-src/test/java/com/knmusic/ethylene/
-└── EthyleneLogicTest.java       # Kiểm tra logic LOD và mob
+tests/
+└── EthyleneLogicTest.java       # Kiểm tra logic LOD và mob (chạy bằng javac/java, không qua Gradle)
 ```

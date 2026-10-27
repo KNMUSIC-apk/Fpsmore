@@ -55,18 +55,29 @@ jobs:
         with:
           gradle-version: '9.8.2'
 
+      - name: Run logic tests
+        run: |
+          javac -d logic-out src/main/java/com/knmusic/ethylene/lod/LodPolicy.java src/main/java/com/knmusic/ethylene/mob/MobDensityPolicy.java tests/EthyleneLogicTest.java
+          java -ea -cp logic-out com.knmusic.ethylene.EthyleneLogicTest
+
       - name: Build mod jar
         run: |
+          set +e
           gradle build --no-daemon --stacktrace > build.log 2>&1
           status=$?
-          tail -n 300 build.log
+          set -e
           if [ "$status" -ne 0 ]; then
+            # Annotation hiển thị trên trang job, không cần đăng nhập
+            grep -n -E 'What went wrong|error:|^e: |FAILURE:|Could not ' build.log | head -20 | while IFS= read -r line; do
+              msg=$(printf '%s' "$line" | tr -d '\r' | sed -e 's/%/%25/g')
+              echo "::error title=Build error::$msg"
+            done
             {
               echo "## Build thất bại (exit code $status)"
               echo ""
               echo "### Các dòng lỗi"
               echo '```'
-              grep -n -E 'error|Error|What went wrong|FAILURE|Could not|Exception' build.log | head -150 || true
+              grep -n -E 'What went wrong|error:|^e: |FAILURE:|Could not |Exception' build.log | head -150 || true
               echo '```'
               echo "### 300 dòng cuối của log"
               echo '```'
@@ -74,6 +85,7 @@ jobs:
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
           fi
+          tail -n 300 build.log
           exit "$status"
 
       - name: Upload mod jar
